@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <rect width="200" height="200" rx="40" fill="#0a0a0a"/>
+  <g transform="translate(100, 100)">
+    <!-- Left weight -->
+    <rect x="-85" y="-35" width="30" height="70" rx="5" fill="#d4af37"/>
+    <!-- Left bar -->
+    <rect x="-55" y="-8" width="30" height="16" rx="2" fill="#d4af37"/>
+    <!-- Center grip -->
+    <rect x="-25" y="-12" width="50" height="24" rx="4" fill="#888888"/>
+    <line x1="-18" y1="-8" x2="-18" y2="8" stroke="#666" stroke-width="2"/>
+    <line x1="-10" y1="-8" x2="-10" y2="8" stroke="#666" stroke-width="2"/>
+    <line x1="-2" y1="-8" x2="-2" y2="8" stroke="#666" stroke-width="2"/>
+    <line x1="6" y1="-8" x2="6" y2="8" stroke="#666" stroke-width="2"/>
+    <line x1="14" y1="-8" x2="14" y2="8" stroke="#666" stroke-width="2"/>
+    <!-- Right bar -->
+    <rect x="25" y="-8" width="30" height="16" rx="2" fill="#d4af37"/>
+    <!-- Right weight -->
+    <rect x="55" y="-35" width="30" height="70" rx="5" fill="#d4af37"/>
+  </g>
+</svg>
