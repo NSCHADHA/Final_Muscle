@@ -29,6 +29,12 @@ export function Dashboard() {
         revenueGradientStart: "rgb(34, 197, 94)",
         newMembers: "rgb(251, 191, 36)",
         totalMembers: "rgb(96, 165, 250)",
+        axisText: "rgb(107, 114, 128)",
+        gridLine: "rgba(229, 231, 235, 0.5)",
+        tooltipBg: "#ffffff",
+        tooltipBorder: "#e5e7eb",
+        tooltipText: "#1f2937",
+        cursorFill: "#f3f4f6",
       }
 
     const isDark = document.documentElement.classList.contains("dark")
@@ -39,6 +45,10 @@ export function Dashboard() {
       totalMembers: isDark ? "rgb(147, 197, 253)" : "rgb(59, 130, 246)",
       axisText: isDark ? "rgb(156, 163, 175)" : "rgb(107, 114, 128)",
       gridLine: isDark ? "rgba(75, 85, 99, 0.3)" : "rgba(229, 231, 235, 0.5)",
+      tooltipBg: isDark ? "rgb(31, 41, 55)" : "#ffffff",
+      tooltipBorder: isDark ? "rgb(55, 65, 81)" : "#e5e7eb",
+      tooltipText: isDark ? "rgb(243, 244, 246)" : "#1f2937",
+      cursorFill: isDark ? "rgba(55, 65, 81, 0.5)" : "rgba(243, 244, 246, 0.5)",
     }
   }
 
@@ -301,12 +311,12 @@ export function Dashboard() {
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "hsl(var(--card))",
-                    border: "1px solid hsl(var(--border))",
+                    backgroundColor: colors.tooltipBg,
+                    border: `1px solid ${colors.tooltipBorder}`,
                     borderRadius: "12px",
                     boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
                   }}
-                  labelStyle={{ color: "hsl(var(--foreground))", fontWeight: 600 }}
+                  labelStyle={{ color: colors.tooltipText, fontWeight: 600 }}
                   itemStyle={{ color: colors.revenue }}
                   formatter={(value: any) => [`₹${value}`, "Revenue"]}
                 />
@@ -319,7 +329,7 @@ export function Dashboard() {
                     fill: colors.revenue,
                     strokeWidth: 2,
                     r: 5,
-                    stroke: "hsl(var(--card))",
+                    stroke: colors.tooltipBg,
                   }}
                   activeDot={{ r: 7, strokeWidth: 2 }}
                   fill="url(#revenueGradient)"
@@ -362,16 +372,16 @@ export function Dashboard() {
                 <YAxis stroke={colors.axisText} fontSize={12} tickLine={false} axisLine={{ stroke: colors.gridLine }} />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "hsl(var(--card))",
-                    border: "1px solid hsl(var(--border))",
+                    backgroundColor: colors.tooltipBg,
+                    border: `1px solid ${colors.tooltipBorder}`,
                     borderRadius: "12px",
                     boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
                   }}
-                  labelStyle={{ color: "hsl(var(--foreground))", fontWeight: 600 }}
-                  cursor={{ fill: "hsl(var(--muted))", opacity: 0.2 }}
+                  labelStyle={{ color: colors.tooltipText, fontWeight: 600 }}
+                  cursor={{ fill: colors.cursorFill, opacity: 0.5 }}
                 />
                 <Legend
-                  wrapperStyle={{ paddingTop: "20px", color: "hsl(var(--foreground))" }}
+                  wrapperStyle={{ paddingTop: "20px", color: colors.tooltipText }}
                   iconType="rect"
                   iconSize={12}
                 />

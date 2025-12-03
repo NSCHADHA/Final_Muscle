@@ -347,7 +347,7 @@ export function useGymData() {
 
           const memberStatus = calculateMemberStatus(action.payload.expiryDate)
 
-          const qrToken = `${authUser.id}-${Date.now()}-${Math.random().toString(36).substring(2, 15)}`
+          const qrToken = `MDQR_${authUser.id}-${Date.now()}-${Math.random().toString(36).substring(2, 15)}`
 
           const optimisticMember: Member = {
             id: `temp-${Date.now()}`,
