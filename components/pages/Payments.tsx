@@ -114,7 +114,7 @@ export function Payments({ searchQuery = "" }: PaymentsProps) {
       tax: 0, // You can calculate GST if needed
       total: payment.amount,
       paymentMethod: payment.payment_method || "cash",
-      paymentStatus: payment.status || "done",
+      paymentStatus: payment.status || "pending",
     }
 
     const html = generateInvoiceHTML(invoiceData)

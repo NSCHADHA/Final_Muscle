@@ -192,8 +192,8 @@ export function generateInvoiceHTML(data: InvoiceData): string {
         <p><strong>#${data.invoiceNumber}</strong></p>
         <p>Date: ${new Date(data.date).toLocaleDateString()}</p>
         <p>
-          <span class="status-badge ${data.paymentStatus === "completed" ? "status-paid" : "status-pending"}">
-            ${data.paymentStatus === "completed" ? "PAID" : "PENDING"}
+          <span class="status-badge ${data.paymentStatus === "done" || data.paymentStatus === "completed" ? "status-paid" : "status-pending"}">
+            ${data.paymentStatus === "done" || data.paymentStatus === "completed" ? "PAID" : "PENDING"}
           </span>
         </p>
       </div>
@@ -239,7 +239,7 @@ export function generateInvoiceHTML(data: InvoiceData): string {
 
     <div class="payment-info">
       <p><strong>Payment Method:</strong> ${data.paymentMethod.toUpperCase()}</p>
-      <p><strong>Payment Status:</strong> ${data.paymentStatus === "completed" ? "Paid in Full" : "Pending Payment"}</p>
+      <p><strong>Payment Status:</strong> ${data.paymentStatus === "done" || data.paymentStatus === "completed" ? "Paid in Full" : "Pending Payment"}</p>
     </div>
 
     <div class="footer">

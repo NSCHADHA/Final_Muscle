@@ -22,6 +22,28 @@ export function Dashboard() {
   const { state } = useGymData()
   const { members, payments } = state
 
+  const getChartColors = () => {
+    if (typeof window === "undefined")
+      return {
+        revenue: "rgb(74, 222, 128)",
+        revenueGradientStart: "rgb(34, 197, 94)",
+        newMembers: "rgb(251, 191, 36)",
+        totalMembers: "rgb(96, 165, 250)",
+      }
+
+    const isDark = document.documentElement.classList.contains("dark")
+    return {
+      revenue: isDark ? "rgb(134, 239, 172)" : "rgb(34, 197, 94)",
+      revenueGradientStart: isDark ? "rgb(74, 222, 128)" : "rgb(34, 197, 94)",
+      newMembers: isDark ? "rgb(253, 224, 71)" : "rgb(251, 191, 36)",
+      totalMembers: isDark ? "rgb(147, 197, 253)" : "rgb(59, 130, 246)",
+      axisText: isDark ? "rgb(156, 163, 175)" : "rgb(107, 114, 128)",
+      gridLine: isDark ? "rgba(75, 85, 99, 0.3)" : "rgba(229, 231, 235, 0.5)",
+    }
+  }
+
+  const colors = getChartColors()
+
   const today = new Date()
   today.setHours(0, 0, 0, 0)
 
@@ -258,24 +280,24 @@ export function Dashboard() {
               <LineChart data={revenueChartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="rgb(34, 197, 94)" stopOpacity={0.3} />
-                    <stop offset="100%" stopColor="rgb(34, 197, 94)" stopOpacity={0} />
+                    <stop offset="0%" stopColor={colors.revenueGradientStart} stopOpacity={0.3} />
+                    <stop offset="100%" stopColor={colors.revenueGradientStart} stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.3} />
+                <CartesianGrid strokeDasharray="3 3" stroke={colors.gridLine} opacity={0.5} />
                 <XAxis
                   dataKey="month"
-                  stroke="hsl(var(--muted-foreground))"
+                  stroke={colors.axisText}
                   fontSize={12}
                   tickLine={false}
-                  axisLine={{ stroke: "hsl(var(--border))" }}
+                  axisLine={{ stroke: colors.gridLine }}
                 />
                 <YAxis
-                  stroke="hsl(var(--muted-foreground))"
+                  stroke={colors.axisText}
                   fontSize={12}
                   tickFormatter={(value) => `₹${value}`}
                   tickLine={false}
-                  axisLine={{ stroke: "hsl(var(--border))" }}
+                  axisLine={{ stroke: colors.gridLine }}
                 />
                 <Tooltip
                   contentStyle={{
@@ -285,16 +307,16 @@ export function Dashboard() {
                     boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
                   }}
                   labelStyle={{ color: "hsl(var(--foreground))", fontWeight: 600 }}
-                  itemStyle={{ color: "rgb(34, 197, 94)" }}
+                  itemStyle={{ color: colors.revenue }}
                   formatter={(value: any) => [`₹${value}`, "Revenue"]}
                 />
                 <Line
                   type="monotone"
                   dataKey="revenue"
-                  stroke="rgb(74, 222, 128)"
+                  stroke={colors.revenue}
                   strokeWidth={3}
                   dot={{
-                    fill: "rgb(74, 222, 128)",
+                    fill: colors.revenue,
                     strokeWidth: 2,
                     r: 5,
                     stroke: "hsl(var(--card))",
@@ -321,28 +343,23 @@ export function Dashboard() {
               <BarChart data={memberGrowthData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="newMembersGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="rgb(251, 191, 36)" stopOpacity={1} />
-                    <stop offset="100%" stopColor="rgb(252, 211, 77)" stopOpacity={0.8} />
+                    <stop offset="0%" stopColor={colors.newMembers} stopOpacity={1} />
+                    <stop offset="100%" stopColor={colors.newMembers} stopOpacity={0.7} />
                   </linearGradient>
                   <linearGradient id="totalMembersGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="rgb(96, 165, 250)" stopOpacity={1} />
-                    <stop offset="100%" stopColor="rgb(147, 197, 253)" stopOpacity={0.8} />
+                    <stop offset="0%" stopColor={colors.totalMembers} stopOpacity={1} />
+                    <stop offset="100%" stopColor={colors.totalMembers} stopOpacity={0.7} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.3} />
+                <CartesianGrid strokeDasharray="3 3" stroke={colors.gridLine} opacity={0.5} />
                 <XAxis
                   dataKey="month"
-                  stroke="hsl(var(--muted-foreground))"
+                  stroke={colors.axisText}
                   fontSize={12}
                   tickLine={false}
-                  axisLine={{ stroke: "hsl(var(--border))" }}
+                  axisLine={{ stroke: colors.gridLine }}
                 />
-                <YAxis
-                  stroke="hsl(var(--muted-foreground))"
-                  fontSize={12}
-                  tickLine={false}
-                  axisLine={{ stroke: "hsl(var(--border))" }}
-                />
+                <YAxis stroke={colors.axisText} fontSize={12} tickLine={false} axisLine={{ stroke: colors.gridLine }} />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: "hsl(var(--card))",
@@ -353,7 +370,11 @@ export function Dashboard() {
                   labelStyle={{ color: "hsl(var(--foreground))", fontWeight: 600 }}
                   cursor={{ fill: "hsl(var(--muted))", opacity: 0.2 }}
                 />
-                <Legend wrapperStyle={{ paddingTop: "20px" }} iconType="rect" iconSize={12} />
+                <Legend
+                  wrapperStyle={{ paddingTop: "20px", color: "hsl(var(--foreground))" }}
+                  iconType="rect"
+                  iconSize={12}
+                />
                 <Bar
                   dataKey="newMembers"
                   fill="url(#newMembersGradient)"
