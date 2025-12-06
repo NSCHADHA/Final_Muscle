@@ -12,7 +12,10 @@ import {
   Building2,
   UserCog,
   UserCheck,
+<<<<<<< HEAD
   Mail,
+=======
+>>>>>>> df90d5bb0e61895adecfd3925b2291e874113859
 } from "lucide-react"
 import { ThemeToggle } from "./ThemeToggle"
 
@@ -26,7 +29,10 @@ type NavItem =
   | "branches"
   | "staff"
   | "attendance"
+<<<<<<< HEAD
   | "membersEmailPortal" // added new nav item for Members Email Portal
+=======
+>>>>>>> df90d5bb0e61895adecfd3925b2291e874113859
 
 interface SidebarProps {
   currentPage: NavItem
@@ -44,7 +50,10 @@ export function Sidebar({ currentPage, onNavigate, onLogout, isMobileMenuOpen, o
     { id: "plans", label: "Plans", icon: <Package size={20} /> },
     { id: "payments", label: "Payments", icon: <CreditCard size={20} /> },
     { id: "reminders", label: "Reminders", icon: <Bell size={20} /> },
+<<<<<<< HEAD
     { id: "membersEmailPortal", label: "Members Email Portal", icon: <Mail size={20} /> }, // added Members Email Portal navigation item
+=======
+>>>>>>> df90d5bb0e61895adecfd3925b2291e874113859
     { id: "branches", label: "Branches", icon: <Building2 size={20} /> },
     { id: "staff", label: "Staff", icon: <UserCog size={20} /> },
     { id: "settings", label: "Settings", icon: <Settings size={20} /> },
