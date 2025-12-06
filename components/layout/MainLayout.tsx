@@ -15,10 +15,7 @@ import { ActivityHistory } from "../pages/ActivityHistory"
 import { PWAInstallPrompt } from "@/components/PWAInstallPrompt"
 import { useGymData } from "@/hooks/useGymData"
 import { Attendance } from "../pages/Attendance"
-<<<<<<< HEAD
 import { MembersEmailPortal } from "../pages/MembersEmailPortal" // imported new Members Email Portal component
-=======
->>>>>>> df90d5bb0e61895adecfd3925b2291e874113859
 
 type NavItem =
   | "dashboard"
@@ -31,10 +28,7 @@ type NavItem =
   | "staff"
   | "settings"
   | "activity"
-<<<<<<< HEAD
   | "membersEmailPortal" // added new nav item type
-=======
->>>>>>> df90d5bb0e61895adecfd3925b2291e874113859
 
 interface MainLayoutProps {
   onLogout: () => void
