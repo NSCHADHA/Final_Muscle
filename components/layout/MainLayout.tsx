@@ -153,11 +153,8 @@ export function MainLayout({ onLogout }: MainLayoutProps) {
         return <Payments searchQuery={globalSearchQuery} />
       case "reminders":
         return <Reminders />
-<<<<<<< HEAD
       case "membersEmailPortal": // added Members Email Portal route
         return <MembersEmailPortal />
-=======
->>>>>>> df90d5bb0e61895adecfd3925b2291e874113859
       case "branches":
         return <Branches branches={state.branches} />
       case "staff":
